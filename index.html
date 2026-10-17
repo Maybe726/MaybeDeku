@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>坦克大战 Tank Battle</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="hud">
+      <span>关卡 <b id="hud-level">1</b></span>
+      <span>得分 <b id="hud-score">0</b></span>
+      <span>生命 <b id="hud-lives">3</b></span>
+      <span>剩余敌人 <b id="hud-enemies">0</b></span>
+    </div>
+    <canvas id="game" width="640" height="480"></canvas>
+    <div class="help">
+      <p><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / 方向键 移动　<kbd>空格</kbd> / <kbd>J</kbd> 射击　<kbd>P</kbd> 暂停</p>
+      <p>消灭所有敌方坦克并保护底部的基地（金鹰）！</p>
+    </div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
