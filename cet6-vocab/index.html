@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>六级词汇通 · CET-6 Vocabulary</title>
+<meta name="description" content="英语六级核心词汇学习网站：词汇浏览、闪卡记忆、测验备考、进度统计">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <h1>📖 六级词汇通</h1>
+    <p class="subtitle">CET-6 核心词汇 · 学习 / 记忆 / 测验 / 备考</p>
+  </div>
+  <nav class="nav" id="nav">
+    <button class="nav-btn active" data-tab="browse">词汇</button>
+    <button class="nav-btn" data-tab="flashcard">闪卡</button>
+    <button class="nav-btn" data-tab="quiz">测验</button>
+    <button class="nav-btn" data-tab="exam">真题</button>
+    <button class="nav-btn" data-tab="stats">统计</button>
+  </nav>
+</header>
+
+<main>
+  <!-- ============ 词汇浏览 ============ -->
+  <section class="tab active" id="tab-browse">
+    <div class="toolbar">
+      <input type="search" id="searchInput" class="search-input" placeholder="搜索英文单词或中文释义…">
+      <span class="count-badge" id="browseCount"></span>
+    </div>
+    <div class="letter-bar" id="letterBar"></div>
+    <div class="word-list" id="wordList"></div>
+  </section>
+
+  <!-- ============ 闪卡 ============ -->
+  <section class="tab" id="tab-flashcard">
+    <div class="setup-panel" id="flashSetup">
+      <h2>闪卡学习</h2>
+      <p class="hint">选择学习范围，点击卡片翻面查看释义，根据掌握情况标记。</p>
+      <div class="setup-row">
+        <label>学习范围：</label>
+        <select id="flashMode">
+          <option value="all">全部词汇（乱序）</option>
+          <option value="unknown">仅未掌握</option>
+          <option value="random50">随机 50 词</option>
+        </select>
+        <button class="btn primary" id="flashStart">开始学习</button>
+      </div>
+    </div>
+    <div class="flash-area" id="flashArea" hidden>
+      <div class="progress-bar"><div class="progress-fill" id="flashProgress"></div></div>
+      <div class="progress-text" id="flashText"></div>
+      <div class="flash-card" id="flashCard">
+        <div class="flash-inner" id="flashInner">
+          <div class="flash-face flash-front">
+            <div class="flash-word" id="flashWord"></div>
+            <div class="flash-phon" id="flashPhon"></div>
+            <div class="flash-tip">点击卡片查看释义</div>
+          </div>
+          <div class="flash-face flash-back">
+            <div class="flash-mean" id="flashMean"></div>
+            <div class="flash-ex" id="flashEx"></div>
+          </div>
+        </div>
+      </div>
+      <div class="flash-actions">
+        <button class="btn" id="flashSpeak">🔊 发音</button>
+        <button class="btn" id="flashFlip">🔄 翻面</button>
+        <button class="btn danger" id="flashUnknown">✗ 不认识</button>
+        <button class="btn success" id="flashKnown">✓ 认识</button>
+      </div>
+    </div>
+    <div class="flash-result" id="flashResult" hidden></div>
+  </section>
+
+  <!-- ============ 测验 ============ -->
+  <section class="tab" id="tab-quiz">
+    <div class="setup-panel" id="quizSetup">
+      <h2>词汇测验</h2>
+      <p class="hint">三种题型：英译汉选词义、汉译英选单词、看释义拼写单词。</p>
+      <div class="setup-row">
+        <label>题型：</label>
+        <select id="quizMode">
+          <option value="en2zh">英译汉（看单词选释义）</option>
+          <option value="zh2en">汉译英（看释义选单词）</option>
+          <option value="spell">拼写（看释义写单词）</option>
+        </select>
+      </div>
+      <div class="setup-row">
+        <label>题数：</label>
+        <select id="quizCount">
+          <option value="10" selected>10 题</option>
+          <option value="20">20 题</option>
+          <option value="30">30 题</option>
+        </select>
+        <button class="btn primary" id="quizStart">开始测验</button>
+      </div>
+    </div>
+    <div class="quiz-area" id="quizArea" hidden></div>
+    <div class="quiz-result" id="quizResult" hidden></div>
+  </section>
+
+  <!-- ============ 真题演练 ============ -->
+  <section class="tab" id="tab-exam">
+    <h2 class="section-title">真题演练</h2>
+    <div class="setup-panel" id="examSetup">
+      <p class="hint">选词填空题材与难度参照六级真题（长篇阅读 Section A）；词汇单选从核心词库中随机生成语境题。</p>
+      <div class="setup-row">
+        <label>套卷：</label>
+        <select id="examMode">
+          <option value="cloze0">选词填空 · 卷一（人工智能与工作）</option>
+          <option value="cloze1">选词填空 · 卷二（气候变化）</option>
+          <option value="cloze2">选词填空 · 卷三（在线教育）</option>
+          <option value="mcq">词汇单选 · 语境辨词（随机 10 题）</option>
+        </select>
+        <button class="btn primary" id="examStart">开始答题</button>
+      </div>
+    </div>
+    <div id="examArea" hidden></div>
+  </section>
+
+  <!-- ============ 统计 ============ -->
+  <section class="tab" id="tab-stats">
+    <h2 class="section-title">学习统计</h2>
+    <div class="stats-grid" id="statsGrid"></div>
+    <div class="stats-history">
+      <h3>最近测验记录</h3>
+      <div id="quizHistory"></div>
+    </div>
+    <div class="stats-actions">
+      <button class="btn danger" id="resetBtn">🗑 清空所有学习数据</button>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>六级词汇通 · 数据保存在浏览器本地 · 祝考试顺利 🍀</p>
+</footer>
+
+<script src="js/data-1.js"></script>
+<script src="js/data-2.js"></script>
+<script src="js/data-3.js"></script>
+<script src="js/data-4.js"></script>
+<script src="js/exam-data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
